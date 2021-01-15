@@ -1,7 +1,7 @@
 var timeKeeper = document.getElementById("timer");
 var starter = document.getElementById("start-btn");
 
-
+//begin
 
 function startFunction() {
     console.log('start');
