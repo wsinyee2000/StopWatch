@@ -46,9 +46,6 @@ button {
 button:hover {
   background-color: white;
   color: #FEA602;
-}
-
-button:active {
-  background-color: greenyellow;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

@@ -9,9 +9,6 @@ body {
 }
 
 .wrapper {
-    // width: 100%;
-    // height: 100vh;
-    // border: 1px solid black;
     text-align: center;
     position: absolute;
     top: 50%;
@@ -44,8 +41,5 @@ button {
 button:hover {
     background-color: white;
     color: #FEA602;
-}
-
-button:active {
-    background-color: greenyellow;
+    cursor: pointer;
 }
