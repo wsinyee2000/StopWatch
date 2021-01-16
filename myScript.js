@@ -21,9 +21,7 @@ function printTimer() {
 
 //Start counting
 function startFunction() {
-    
-       stopThis = setInterval(printTimer, 10);
-    
+    stopThis = setInterval(printTimer, 10);
 }
 
 //reset the timer and stop the timer
@@ -33,14 +31,27 @@ function resetFunction() {
     timer.millisecond = 00;
     second.innerHTML = ("0" + timer.sec).slice(-2);
     millisecond.innerHTML = ("0" + timer.millisecond).slice(-2);
-
+    document.getElementById("timeRecord").innerHTML = "";
 }
 
+//save records
+function saveRecord() {
+    
+    var newRecord = document.createElement("p");
+    newRecord.innerHTML = ("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
+    document.getElementById("timeRecord").appendChild(newRecord);
+}
+
+//pause the timer
+function pauseTimer() {
+    clearInterval(stopThis);
+}
 
 //buttons
 document.getElementById("start-btn").addEventListener("click", startFunction);
-document.getElementById("stop-btn").addEventListener("click", () => {
-    clearInterval(stopThis);
-} 
-);
+document.getElementById("lap-btn").addEventListener("click", () => {
+    // clearInterval(stopThis);
+    saveRecord();
+});
 document.getElementById("reset-btn").addEventListener("click", resetFunction);
+document.getElementById("pause-btn").addEventListener("click", pauseTimer);
