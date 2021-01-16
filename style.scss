@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: #FEA602;
+    background-color: black;
     color: #ffffff;
 }
 
@@ -20,7 +20,7 @@ h3 {
 }
 
 h1 {
-    padding: 10vh 0;
+    padding-top: 20px
 }
 
 .buttons {
@@ -48,17 +48,20 @@ button:hover {
 
 #pause-btn,
 #lap-btn,
-#reset-btn {
+#reset-btn,
+#timeRecord {
     display: none;
 }
 
 #timeRecord {
-    padding: 10px 5px;
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 10px;
-    justify-content: flex-start;
-    width: 60%;
+    width: 70%;
+    border: 1px solid whitesmoke;
     margin: auto;
-    font-size: 42px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: xx-large;
+}
+
+thead th {
+    padding-bottom: 20px;
 }

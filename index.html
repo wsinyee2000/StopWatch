@@ -13,9 +13,8 @@
     <div class="wrapper">
         <h1>STOPWATCH</h1>
 
-        <h3 id="timer"><span id="second">00</span>:<span id="millisecond">00</span></h3>
-        <div id="timeRecord">
-        </div>
+        <h3 id="timer">00:00:00</h3>
+
         <div class="buttons">
             <button id="start-btn">Start</button>
             <button id="pause-btn">Pause</button>
@@ -23,6 +22,22 @@
             <button id="reset-btn">Reset</button>
 
         </div>
+
+        <table id="timeRecord">
+            <thead>
+                <th></th>
+                <th>Lap Time</th>
+                <th>Split Time</th>
+            </thead>
+            <tbody id="timeRecord_body">
+                <!-- <tr>
+                    <td>01</td>
+                    <td>0 0.1</td>
+                    <td>0 2.2</td>
+                </tr> -->
+            </tbody>
+
+        </table>
     </div>
 
 </body>
