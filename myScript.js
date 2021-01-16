@@ -22,6 +22,11 @@ function printTimer() {
 //Start counting
 function startFunction() {
     stopThis = setInterval(printTimer, 10);
+    document.getElementById("start-btn").style.display = "none";
+    document.getElementById("pause-btn").style.display = "block";
+    document.getElementById("lap-btn").style.display = "block";
+    document.getElementById("reset-btn").style.display = "none";
+
 }
 
 //reset the timer and stop the timer
@@ -45,6 +50,11 @@ function saveRecord() {
 //pause the timer
 function pauseTimer() {
     clearInterval(stopThis);
+    document.getElementById("start-btn").style.display = "block";
+    document.getElementById("pause-btn").style.display = "none";
+    document.getElementById("lap-btn").style.display = "none";
+    document.getElementById("reset-btn").style.display = "block";
+
 }
 
 //buttons
