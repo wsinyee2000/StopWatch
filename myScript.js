@@ -4,12 +4,17 @@ let timer = {
     sec: 00,
     millisecond: 00,
     lap: 0,
-    lastSave: "00:00:00"
+    lastSave: "00:00:00",
+    record: []
 };
 var stopThis;
 
+
 //Printing out the time from start function
 function printTimer() {
+    
+    var currTime = ("0" + timer.min).slice(-2)+":"+ ("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
+
     if(timer.millisecond < 99){
         timer.millisecond += 1;
     } else if (timer.sec < 60){
@@ -20,7 +25,21 @@ function printTimer() {
         timer.min += 1;
     }
     showTime.innerHTML =("0" + timer.min).slice(-2)+":"+ ("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
+    
+    //for the table
+    if(timer.record.length > 0){
+        var table_splitTime = document.getElementById("timeRecord_body").firstChild;
 
+        //for the table lapTime time running
+        var table_splitTimeChange = table_splitTime.firstChild.nextSibling;
+        table_splitTimeChange.innerHTML = timeDifferent(timer.lastSave, currTime);
+
+        //for the table split time running
+        var table_splitTimeChange = table_splitTime.lastChild;
+        table_splitTimeChange.innerHTML = ("0" + timer.min).slice(-2)+":"+ ("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
+    }
+    
+   
 }
 
 //Start counting
@@ -31,11 +50,13 @@ function startFunction() {
     document.getElementById("lap-btn").style.display = "block";
     document.getElementById("reset-btn").style.display = "none";
 
+   
 }
 
 //reset the timer and stop the timer
 function resetFunction() {
     clearInterval(stopThis);
+    timer.record = [];
     timer.lap= 0;
     timer.lastSave= "00:00:00";
     timer.sec = 00;
@@ -52,7 +73,7 @@ function timeDifferent(start, end) {
     let startTime = start.split(":"); 
 
     let endTimeMS = parseInt((endTime[0]*60*1000)) + parseInt((endTime[1] * 1000)) + parseInt(endTime[2]);
-  let startTimeMS = parseInt((startTime[0]*60*1000)) + parseInt((startTime[1] * 1000)) + parseInt(startTime[2]);
+    let startTimeMS = parseInt((startTime[0]*60*1000)) + parseInt((startTime[1] * 1000)) + parseInt(startTime[2]);
     
     let timeDiff = endTimeMS - startTimeMS;
     
@@ -67,28 +88,64 @@ function timeDifferent(start, end) {
 //save records
 function saveRecord() {
     document.getElementById("timeRecord").style.display = "table";
-    timer.lap += 1;
-    
     var currentTime = ("0" + timer.min).slice(-2)+":"+("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
-    
-    var newRecord = document.createElement("tr");
-    document.getElementById("timeRecord_body").appendChild(newRecord);
-    
-    var newLap = document.createElement("td");
-    newLap.innerHTML = ("0" + timer.lap).slice(-2);
-    
-    var newLapTime = document.createElement("td");
-    newLapTime.innerHTML = timeDifferent(timer.lastSave, currentTime);
-    
-    var newSplitTime = document.createElement("td");
-    newSplitTime.innerHTML = ("0" + timer.min).slice(-2)+":"+("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
-    
-    newRecord.appendChild(newLap);
-    newRecord.appendChild(newLapTime);
-    newRecord.appendChild(newSplitTime);
 
+    if(timer.record.length === 0){
+        timer.lap += 1;
+        
+        //the first line of the record
+        
+        
+        var newRecord = document.createElement("tr");
+
+        //change the order of the table
+        // document.getElementById("timeRecord_body").appendChild(newRecord);
+        document.getElementById("timeRecord_body").insertBefore(newRecord, document.getElementById("timeRecord_body").childNodes[0]);
+        
+        var newLap = document.createElement("td");
+        newLap.innerHTML = ("0" + timer.lap).slice(-2);
+        
+        var newLapTime = document.createElement("td");
+        newLapTime.innerHTML = timeDifferent(timer.lastSave, currentTime);
+        
+        var newSplitTime = document.createElement("td");
+        newSplitTime.innerHTML = ("0" + timer.min).slice(-2)+":"+("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
+        
+        newRecord.appendChild(newLap);
+        newRecord.appendChild(newLapTime);
+        newRecord.appendChild(newSplitTime);
+
+        
+        timer.record.push(timer.lastSave);
+    }
     timer.lastSave = ("0" + timer.min).slice(-2)+":"+("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
 
+    //the second line
+    if(timer.record.length > 0){
+        timer.lap += 1;
+
+        var newRecord = document.createElement("tr");
+
+        //change the order of the table
+        // document.getElementById("timeRecord_body").appendChild(newRecord);
+        document.getElementById("timeRecord_body").insertBefore(newRecord, document.getElementById("timeRecord_body").childNodes[0]);
+        
+        var newLap = document.createElement("td");
+        newLap.innerHTML = ("0" + timer.lap).slice(-2);
+        
+        var newLapTime = document.createElement("td");
+        newLapTime.innerHTML = timeDifferent(timer.lastSave, currentTime);
+        
+        var newSplitTime = document.createElement("td");
+        // newSplitTime.innerHTML = ("0" + timer.min).slice(-2)+":"+("0" + timer.sec).slice(-2) + ":" + ("0" + timer.millisecond).slice(-2);
+        
+        newRecord.appendChild(newLap);
+        newRecord.appendChild(newLapTime);
+        newRecord.appendChild(newSplitTime);
+    }
+
+    
+    
 }
 
 //pause the timer
