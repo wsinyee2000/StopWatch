@@ -4,8 +4,7 @@ let timer = {
     sec: 0,
     millisecond: 0,
     lap: 0,
-    lastSave: "00:00:00",
-    record: []
+    lastSave: "00:00:00"
 };
 let stopThis;
 let firstTime = true;
