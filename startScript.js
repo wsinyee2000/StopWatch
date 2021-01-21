@@ -22,19 +22,19 @@ function startFunction() {
 //Printing out the time from start function
 function printTimer() {
 
-    if(timer.millisecond < 99){
+    if (timer.millisecond < 99) {
         timer.millisecond += 1;
-    } else if (timer.sec < 60){
+    } else if (timer.sec < 60) {
         timer.millisecond = 0;
         timer.sec += 1;
     } else {
         timer.sec = 0;
         timer.min += 1;
     }
-    showTime.innerHTML =timeFormat();
-    
+    showTime.innerHTML = timeFormat();
+
     //for the table
-    if(firstTime === false){
+    if (!firstTime) {
         let table_splitTime = document.getElementById("timeRecord_body").firstChild;
 
         //for the table lapTime time running
@@ -54,6 +54,5 @@ function setTwoDigit(num) {
 
 //Make the time have a 00:00:00 formate
 function timeFormat() {
-    return setTwoDigit(timer.min)+":"+ setTwoDigit(timer.sec) + ":" + setTwoDigit(timer.millisecond);
+    return setTwoDigit(timer.min) + ":" + setTwoDigit(timer.sec) + ":" + setTwoDigit(timer.millisecond);
 }
-
