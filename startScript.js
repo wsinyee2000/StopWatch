@@ -4,7 +4,8 @@ let timer = {
     sec: 0,
     millisecond: 0,
     lap: 0,
-    lastSave: "00:00:00"
+    // lastSave: "00:00:00",
+    newlastSave: [0, 0, 0]
 };
 let stopThis;
 let firstTime = true;
@@ -20,7 +21,7 @@ function startFunction() {
 
 //Printing out the time from start function
 function printTimer() {
-
+    let newCurrentTime = [timer.min, timer.sec, timer.millisecond];
     if (timer.millisecond < 99) {
         timer.millisecond += 1;
     } else if (timer.sec < 60) {
@@ -38,7 +39,7 @@ function printTimer() {
 
         //for the table lapTime time running
         let table_lapTimeChange = table_splitTime.firstChild.nextSibling;
-        table_lapTimeChange.innerHTML = timeDifferent(timer.lastSave, timeFormat());
+        table_lapTimeChange.innerHTML = otherTimeDifferent(timer.newlastSave, newCurrentTime);
 
         //for the table split time running
         let table_splitTimeChange = table_splitTime.lastChild;
