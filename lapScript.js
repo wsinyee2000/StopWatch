@@ -28,6 +28,9 @@ function createTableElements() {
     let newLap = document.createElement("td");
     let newLapTime = document.createElement("td");
     let newSplitTime = document.createElement("td");
+    let removeRow = document.createElement("td");
+    let removeBtn = document.createElement("p");
+
 
     if(firstTime){
         newLapTime.innerHTML = otherTimeDifferent(timer.newlastSave, newCurrentTime);
@@ -36,11 +39,21 @@ function createTableElements() {
     }
 
     newLap.innerHTML = setTwoDigit(timer.lap);
+    removeBtn.innerHTML = 'x';
+    removeRow.className +='removerow';
+    removeRow.onclick = removeRecord;
 
     newRecord.appendChild(newLap);
     newRecord.appendChild(newLapTime);
     newRecord.appendChild(newSplitTime);
+    newRecord.appendChild(removeRow);
+    removeRow.appendChild(removeBtn);
+
+
+    
 }
+
+
 
 //find out the time different by change time to millisecond
 // function timeDifferent(start, end) {

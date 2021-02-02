@@ -34,7 +34,7 @@ function printTimer() {
     showTime.innerHTML = timeFormat();
 
     //for the table
-    if (!firstTime) {
+    if (!firstTime && document.getElementById("timeRecord_body").firstChild !== null) {
         let table_splitTime = document.getElementById("timeRecord_body").firstChild;
 
         //for the table lapTime time running
@@ -42,7 +42,7 @@ function printTimer() {
         table_lapTimeChange.innerHTML = otherTimeDifferent(timer.newlastSave, newCurrentTime);
 
         //for the table split time running
-        let table_splitTimeChange = table_splitTime.lastChild;
+        let table_splitTimeChange = table_splitTime.firstChild.nextSibling.nextSibling;
         table_splitTimeChange.innerHTML = timeFormat();
     }
 }
